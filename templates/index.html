@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 </head>
+
 <body>
-    <!-- Hello -->
-    {{data|length}}
-    {%for item in data %}
-    {{item.name}}
-    {%endfor%}
+    <button onclick="add_recipe()">add</button>
+    <script>
+        const MY_SERVER = "http://127.0.0.1:5000/recipes"
+        axios.get(MY_SERVER).then(res => console.log(res.data))
+
+        const del_recipe = () => {
+
+        }
+
+
+        const add_recipe = () => {
+            axios.post(MY_SERVER, {
+                "name": "shalev",
+                "ingredients": ["corn", "mayonnaise", "cotija cheese", "sour cream", "lime"],
+                "prep_time": 35
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    </script>
 </body>
+
 </html>
